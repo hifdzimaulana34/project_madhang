@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -6,10 +8,12 @@ void main() => runApp(MaterialApp(
         brightness: Brightness.light,
         primaryColor: Colors.blue,
       ),
-      home: MyApp(),
+      home: const MyApp(),
     ));
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -18,19 +22,40 @@ class _MyAppState extends State<MyApp> {
   late String namaMakanan, hargaMakanan, deskripsiMakanan;
 
   getName(nama) {
-    this.namaMakanan = nama;
+    namaMakanan = nama;
   }
 
   getHarga(harga) {
-    this.hargaMakanan = harga;
+    hargaMakanan = harga;
   }
 
   getDeskripsi(deskripsi) {
-    this.deskripsiMakanan = deskripsi;
+    deskripsiMakanan = deskripsi;
   }
 
-  createData() {
-    print("created");
+  void createData() async {
+    try {
+      // Initialize Firebase app
+      await Firebase.initializeApp();
+
+      print("created");
+
+      DocumentReference documentReference = FirebaseFirestore.instance
+          .collection("MyRestaurant")
+          .doc(namaMakanan);
+
+      Map<String, dynamic> makanan = {
+        "Nama Makanan": namaMakanan,
+        "Harga Makanan": hargaMakanan,
+        "Deskripsi Makanan": deskripsiMakanan
+      };
+
+      await documentReference.set(makanan);
+
+      print("Data added successfully");
+    } catch (e) {
+      print("Error adding data: $e");
+    }
   }
 
   editData() {
@@ -105,9 +130,9 @@ class _MyAppState extends State<MyApp> {
                             MaterialStateProperty.all<Color>(Colors.green),
                         foregroundColor:
                             MaterialStateProperty.all<Color>(Colors.white),
-                        minimumSize:
-                            MaterialStateProperty.all<Size>(Size(10, 40))),
-                    child: Text("Tambah")),
+                        minimumSize: MaterialStateProperty.all<Size>(
+                            const Size(10, 40))),
+                    child: const Text("Tambah")),
                 ElevatedButton(
                     onPressed: () {
                       editData();
@@ -117,9 +142,9 @@ class _MyAppState extends State<MyApp> {
                             MaterialStateProperty.all<Color>(Colors.orange),
                         foregroundColor:
                             MaterialStateProperty.all<Color>(Colors.white),
-                        minimumSize:
-                            MaterialStateProperty.all<Size>(Size(10, 40))),
-                    child: Text("Edit")),
+                        minimumSize: MaterialStateProperty.all<Size>(
+                            const Size(10, 40))),
+                    child: const Text("Edit")),
                 ElevatedButton(
                     onPressed: () {
                       deleteData();
@@ -129,9 +154,9 @@ class _MyAppState extends State<MyApp> {
                             MaterialStateProperty.all<Color>(Colors.red),
                         foregroundColor:
                             MaterialStateProperty.all<Color>(Colors.white),
-                        minimumSize:
-                            MaterialStateProperty.all<Size>(Size(10, 40))),
-                    child: Text("Hapus")),
+                        minimumSize: MaterialStateProperty.all<Size>(
+                            const Size(10, 40))),
+                    child: const Text("Hapus")),
               ],
             )
           ],
