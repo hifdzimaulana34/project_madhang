@@ -29,6 +29,18 @@ class _MyAppState extends State<MyApp> {
     this.deskripsiMakanan = deskripsi;
   }
 
+  createData() {
+    print("created");
+  }
+
+  editData() {
+    print("edited");
+  }
+
+  deleteData() {
+    print("deleted");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,7 +97,9 @@ class _MyAppState extends State<MyApp> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      createData();
+                    },
                     style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all<Color>(Colors.green),
@@ -95,7 +109,9 @@ class _MyAppState extends State<MyApp> {
                             MaterialStateProperty.all<Size>(Size(10, 40))),
                     child: Text("Tambah")),
                 ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      editData();
+                    },
                     style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all<Color>(Colors.orange),
@@ -105,7 +121,9 @@ class _MyAppState extends State<MyApp> {
                             MaterialStateProperty.all<Size>(Size(10, 40))),
                     child: Text("Edit")),
                 ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      deleteData();
+                    },
                     style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all<Color>(Colors.red),

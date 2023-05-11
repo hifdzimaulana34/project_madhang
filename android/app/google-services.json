@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "13941750961",
+    "project_id": "madhang-app-18fd9",
+    "storage_bucket": "madhang-app-18fd9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:13941750961:android:2692b79c24dd8a20273690",
+        "android_client_info": {
+          "package_name": "com.example.project_madhang"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "13941750961-a5c8hvvbbm082mvr9fck4rul3af57bmq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxutM33XtHAZI0WISd1zHAyOKqtSkxFME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "13941750961-a5c8hvvbbm082mvr9fck4rul3af57bmq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
