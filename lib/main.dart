@@ -38,7 +38,51 @@ class _MyAppState extends State<MyApp> {
       // Initialize Firebase app
       await Firebase.initializeApp();
 
-      print("created");
+      DocumentReference documentReference = FirebaseFirestore.instance
+          .collection("MyRestaurant")
+          .doc(namaMakanan);
+
+      Map<String, dynamic> makanan = {
+        "Nama Makanan": namaMakanan,
+        "Harga Makanan": hargaMakanan,
+        "Deskripsi Makanan": deskripsiMakanan
+      };
+
+      await documentReference.set(makanan);
+
+      print("Data $namaMakanan berhasil ditambahkan");
+    } catch (e) {
+      print("Error saat menambahkan data: $e");
+    }
+  }
+
+  void readData() async {
+    await Firebase.initializeApp();
+    FirebaseFirestore.instance
+        .collection("MyRestaurant")
+        .doc(namaMakanan)
+        .get()
+        .then((DocumentSnapshot snapshot) {
+      if (snapshot.exists) {
+        Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>?;
+
+        if (data != null) {
+          print(data["Nama Makanan"]);
+          print(data["Harga Makanan"]);
+          print(data["Deskripsi Makanan"]);
+        }
+      } else {
+        print("Document tidak ada");
+      }
+    }).catchError((error) {
+      print("Error: $error");
+    });
+  }
+
+  editData() async {
+    try {
+      // Initialize Firebase app
+      await Firebase.initializeApp();
 
       DocumentReference documentReference = FirebaseFirestore.instance
           .collection("MyRestaurant")
@@ -52,18 +96,24 @@ class _MyAppState extends State<MyApp> {
 
       await documentReference.set(makanan);
 
-      print("Data added successfully");
+      print("Data berhasil diedit");
     } catch (e) {
-      print("Error adding data: $e");
+      print("Error saat mengedit data: $e");
     }
   }
 
-  editData() {
-    print("edited");
-  }
+  deleteData() async {
+    try {
+      DocumentReference documentReference = FirebaseFirestore.instance
+          .collection("MyRestaurant")
+          .doc(namaMakanan);
 
-  deleteData() {
-    print("deleted");
+      documentReference.delete().whenComplete(() {
+        print("$namaMakanan telah dihapus");
+      });
+    } catch (e) {
+      print("Error saat menghapus $namaMakanan");
+    }
   }
 
   @override
@@ -133,6 +183,18 @@ class _MyAppState extends State<MyApp> {
                         minimumSize: MaterialStateProperty.all<Size>(
                             const Size(10, 40))),
                     child: const Text("Tambah")),
+                ElevatedButton(
+                    onPressed: () {
+                      readData();
+                    },
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.blue),
+                        foregroundColor:
+                            MaterialStateProperty.all<Color>(Colors.white),
+                        minimumSize: MaterialStateProperty.all<Size>(
+                            const Size(10, 40))),
+                    child: const Text("Cari")),
                 ElevatedButton(
                     onPressed: () {
                       editData();
