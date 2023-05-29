@@ -3,6 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 class ListViewPage extends StatefulWidget {
+  const ListViewPage({super.key});
+
   @override
   _ListViewPageState createState() => _ListViewPageState();
 }
@@ -27,7 +29,7 @@ class _ListViewPageState extends State<ListViewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('List makanan dari MyRestaurant'),
+        title: const Text('List makanan dari MyRestaurant'),
       ),
       body: FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
         future: _listFuture,
@@ -48,9 +50,9 @@ class _ListViewPageState extends State<ListViewPage> {
                   title: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Nama Makanan: " + text1),
-                      Text("Harga Makanan: " + text2),
-                      Text("Deskripsi: " + text3),
+                      Text("Nama Makanan: $text1"),
+                      Text("Harga Makanan: $text2"),
+                      Text("Deskripsi: $text3"),
                     ],
                   ),
                 );
@@ -61,7 +63,7 @@ class _ListViewPageState extends State<ListViewPage> {
               child: Text('Error: ${snapshot.error}'),
             );
           } else {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }

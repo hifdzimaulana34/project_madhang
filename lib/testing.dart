@@ -6,10 +6,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,6 +29,8 @@ class MyHomePage extends StatelessWidget {
   final CollectionReference collectionRef =
       FirebaseFirestore.instance.collection('newCollection');
 
+  MyHomePage({super.key});
+
   void addDocument() async {
     try {
       await collectionRef.add({
@@ -43,12 +47,12 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Firestore Add Collection Example'),
+        title: const Text('Firestore Add Collection Example'),
       ),
       body: Center(
         child: ElevatedButton(
           onPressed: addDocument,
-          child: Text('Add Document'),
+          child: const Text('Add Document'),
         ),
       ),
     );

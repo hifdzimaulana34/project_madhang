@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 class InputMenu extends StatefulWidget {
-  const InputMenu({Key? key});
+  const InputMenu({super.key});
 
   @override
   _InputMenuState createState() => _InputMenuState();
