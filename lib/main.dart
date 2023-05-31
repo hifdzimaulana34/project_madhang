@@ -3,6 +3,7 @@ import 'package:project_madhang/counter.dart';
 import 'package:project_madhang/inputMenu.dart';
 import 'package:project_madhang/adminListMenu.dart';
 import 'package:project_madhang/adminHomePage.dart';
+import 'package:project_madhang/userHomePage.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,8 +25,9 @@ class MyApp extends StatelessWidget {
       home: LoginPage(),
       routes: {
         '/inputMenu': (context) => const InputMenu(),
-        '/adminListMenu': (context) => const ListViewPage(),
+        '/adminListMenu': (context) => adminListView(),
         '/adminHome': (context) => const adminHomePage(),
+        '/userHome': (context) => const userHomePage(),
         '/login': (context) => LoginPage(),
         '/countMeja': (context) => const CounterPage(),
       },
@@ -47,9 +49,9 @@ class LoginPage extends StatelessWidget {
 
     // Here, you can replace the condition with your own logic to determine user access level
     if (username == 'admin' && password == 'admin') {
-      Navigator.pushReplacementNamed(context, '/inputMenu');
-    } else {
       Navigator.pushReplacementNamed(context, '/adminHome');
+    } else {
+      Navigator.pushReplacementNamed(context, '/userHome');
     }
   }
 
@@ -58,6 +60,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
+        automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -85,38 +88,6 @@ class LoginPage extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-      ),
-      body: const Center(
-        child: Text('Welcome, User!'),
-      ),
-    );
-  }
-}
-
-class AdminPage extends StatelessWidget {
-  const AdminPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Admin'),
-      ),
-      body: const Center(
-        child: Text('Welcome, Admin!'),
       ),
     );
   }

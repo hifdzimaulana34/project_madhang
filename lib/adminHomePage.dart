@@ -15,6 +15,21 @@ class adminHomePage extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
+                Navigator.pushNamed(context, '/countMeja');
+              },
+              style: ButtonStyle(
+                  minimumSize:
+                      MaterialStateProperty.all<Size>(const Size(135, 50))),
+              child: const Padding(
+                padding: EdgeInsets.all(1.0),
+                child: Text('Counter'),
+              ),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            ElevatedButton(
+              onPressed: () {
                 Navigator.pushNamed(context, '/inputMenu');
               },
               style: ButtonStyle(
@@ -53,21 +68,6 @@ class adminHomePage extends StatelessWidget {
               child: const Padding(
                 padding: EdgeInsets.all(1.0),
                 child: Text('Log Out'),
-              ),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/countMeja');
-              },
-              style: ButtonStyle(
-                  minimumSize:
-                      MaterialStateProperty.all<Size>(const Size(135, 50))),
-              child: const Padding(
-                padding: EdgeInsets.all(1.0),
-                child: Text('Counter'),
               ),
             ),
           ],

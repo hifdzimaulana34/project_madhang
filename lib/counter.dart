@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class counter extends StatelessWidget {
   const counter({super.key});
@@ -28,6 +29,7 @@ class _CounterPageState extends State<CounterPage> {
 
   Future<void> _fetchCounterValue() async {
     // Retrieve the value from Firestore
+    await Firebase.initializeApp();
     DocumentSnapshot snapshot = await FirebaseFirestore.instance
         .collection('Meja')
         .doc('MejaTersedia')
