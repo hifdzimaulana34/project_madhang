@@ -176,18 +176,6 @@ class _InputMenuState extends State<InputMenu> {
                     child: const Text("Tambah")),
                 ElevatedButton(
                     onPressed: () {
-                      readData();
-                    },
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.blue),
-                        foregroundColor:
-                            MaterialStateProperty.all<Color>(Colors.white),
-                        minimumSize: MaterialStateProperty.all<Size>(
-                            const Size(10, 40))),
-                    child: const Text("Cari")),
-                ElevatedButton(
-                    onPressed: () {
                       editData();
                     },
                     style: ButtonStyle(

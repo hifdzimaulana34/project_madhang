@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:project_madhang/counter.dart';
 import 'package:project_madhang/inputMenu.dart';
-import 'package:project_madhang/adminListMenu.dart';
+import 'package:project_madhang/adminListView.dart';
 import 'package:project_madhang/adminHomePage.dart';
+import 'package:project_madhang/orderAdmin.dart';
+import 'package:project_madhang/orderUser.dart';
+import 'package:project_madhang/reservasiMeja.dart';
+import 'package:project_madhang/restoranListView.dart';
 import 'package:project_madhang/userHomePage.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
   runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
 }
 
 class MyApp extends StatelessWidget {
@@ -25,11 +32,15 @@ class MyApp extends StatelessWidget {
       home: LoginPage(),
       routes: {
         '/inputMenu': (context) => const InputMenu(),
-        '/adminListMenu': (context) => adminListView(),
+        '/adminListView': (context) => adminListView(),
+        '/listViewResto': (context) => restoranListView(),
         '/adminHome': (context) => const adminHomePage(),
         '/userHome': (context) => const userHomePage(),
         '/login': (context) => LoginPage(),
         '/countMeja': (context) => const CounterPage(),
+        '/reservasi': (context) => reservasiPage(),
+        '/userOrder': (context) => orderUser(),
+        '/adminOrder': (context) => orderAdmin(),
       },
     );
   }

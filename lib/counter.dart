@@ -8,7 +8,7 @@ class counter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Firestore Counter',
+      title: 'Atur Meja Tersedia',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -43,7 +43,9 @@ class _CounterPageState extends State<CounterPage> {
 
   Future<void> _incrementCounter() async {
     setState(() {
-      counter++;
+      if (counter < 12) {
+        counter++;
+      }
     });
     // Update the value in Firestore
     await FirebaseFirestore.instance
@@ -54,7 +56,9 @@ class _CounterPageState extends State<CounterPage> {
 
   Future<void> _decrementCounter() async {
     setState(() {
-      counter--;
+      if (counter > 0) {
+        counter--;
+      }
     });
     // Update the value in Firestore
     await FirebaseFirestore.instance
@@ -73,7 +77,7 @@ class _CounterPageState extends State<CounterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Firestore Counter'),
+        title: const Text('Atur Meja Tersedia'),
       ),
       body: Center(
         child: Column(

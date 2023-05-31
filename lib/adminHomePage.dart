@@ -8,6 +8,7 @@ class adminHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Admin Homepage'),
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Column(
@@ -22,7 +23,7 @@ class adminHomePage extends StatelessWidget {
                       MaterialStateProperty.all<Size>(const Size(135, 50))),
               child: const Padding(
                 padding: EdgeInsets.all(1.0),
-                child: Text('Counter'),
+                child: Text('Mejaku'),
               ),
             ),
             const SizedBox(
@@ -45,7 +46,7 @@ class adminHomePage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/adminListMenu');
+                Navigator.pushNamed(context, '/adminListView');
               },
               style: ButtonStyle(
                   minimumSize:
@@ -53,6 +54,21 @@ class adminHomePage extends StatelessWidget {
               child: const Padding(
                 padding: EdgeInsets.all(1.0),
                 child: Text('Daftar Makanan'),
+              ),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/adminOrder');
+              },
+              style: ButtonStyle(
+                  minimumSize:
+                      MaterialStateProperty.all<Size>(const Size(135, 50))),
+              child: const Padding(
+                padding: EdgeInsets.all(1.0),
+                child: Text('Orderanku'),
               ),
             ),
             const SizedBox(

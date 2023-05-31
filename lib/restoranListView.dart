@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:project_madhang/menuDetailPage.dart';
+import 'package:project_madhang/userListView.dart';
 
-void main() {
-  runApp(adminListView());
-}
-
-class adminListView extends StatelessWidget {
+class restoranListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,21 +12,25 @@ class adminListView extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: adminListViewPage(),
+      home: restoranListViewPage(),
+      routes: {
+        '/userListView': (context) => userListView(),
+      },
     );
   }
 }
 
-class adminListViewPage extends StatefulWidget {
+class restoranListViewPage extends StatefulWidget {
+  const restoranListViewPage({super.key});
   @override
-  _adminListViewPageState createState() => _adminListViewPageState();
+  _restoranListViewPageState createState() => _restoranListViewPageState();
 }
 
-class _adminListViewPageState extends State<adminListViewPage> {
+class _restoranListViewPageState extends State<restoranListViewPage> {
   Future<List<DocumentSnapshot>> _fetchFirestoreDocuments() async {
     await Firebase.initializeApp();
     QuerySnapshot querySnapshot =
-        await FirebaseFirestore.instance.collection('MyRestaurant').get();
+        await FirebaseFirestore.instance.collection('Meja').get();
 
     return querySnapshot.docs;
   }
@@ -47,7 +48,7 @@ class _adminListViewPageState extends State<adminListViewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Firestore ListView Example'),
+        title: Text('Menu MyRestaurant'),
       ),
       body: FutureBuilder<List<DocumentSnapshot>>(
         future: _fetchFirestoreDocuments(),
@@ -66,15 +67,34 @@ class _adminListViewPageState extends State<adminListViewPage> {
               itemCount: documents!.length,
               itemBuilder: (context, index) {
                 DocumentSnapshot document = documents[index];
-                String documentText = document['Nama Makanan'];
+                num documentText = document['Jumlah'];
+                String jumlahMeja = documentText.toString();
 
                 return ListTile(
-                  title: Text(documentText),
+                  title: Padding(
+                    padding: const EdgeInsets.only(top: 16),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey, // Set the desired color for the box
+                        borderRadius: BorderRadius.circular(
+                            10), // Set the desired border radius
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          children: [
+                            Text('MyRestaurant'),
+                            Text('Jumlah meja tersedia: ' + jumlahMeja),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                   trailing: ElevatedButton(
                     onPressed: () {
-                      _navigateToDetailsPage(document);
+                      Navigator.pushNamed(context, '/userListView');
                     },
-                    child: Text('Tampilkan'),
+                    child: Text('Menu'),
                   ),
                 );
               },
