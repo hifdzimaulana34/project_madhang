@@ -97,14 +97,14 @@ class _menuDetailpageState extends State<menuDetailpage> {
                       onPressed: () {
                         incrementCounter(data?['Nama Makanan']);
                       },
-                      child: Text('Increment'),
+                      child: Text('Tambahkan'),
                     ),
                     SizedBox(width: 16.0),
                     ElevatedButton(
                       onPressed: () {
                         decrementCounter(data?['Nama Makanan']);
                       },
-                      child: Text('Decrement'),
+                      child: Text('Kurangi'),
                     ),
                   ],
                 ),

@@ -111,7 +111,7 @@ class _InputMenuState extends State<InputMenu> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Madhang Crud Test"),
+        title: const Text("Input menu"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
